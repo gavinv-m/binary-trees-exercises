@@ -1,4 +1,5 @@
 import Node from './node.js';
+import deleteNode from './delete.js';
 
 export default class Tree {
   constructor(array) {
@@ -24,6 +25,30 @@ export default class Tree {
     );
     const end = sortedArray.length - 1;
     this.root = this.createTree(sortedArray, 0, end);
+  }
+
+  deleteItem(value, node = this.root) {
+    if (node === null) {
+      return;
+    }
+
+    if (value < node.data) {
+      node =
+        node.left.data === value
+          ? deleteNode(node, 'left')
+          : this.deleteItem(value, node.left);
+      return node;
+    }
+
+    if (value > node.data) {
+      node =
+        node.right.data === value
+          ? deleteNode(node, 'right')
+          : this.deleteItem(value, node.right);
+      return node;
+    }
+
+    return node;
   }
 
   insert(value, node = this.root) {
