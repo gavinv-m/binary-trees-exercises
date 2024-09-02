@@ -173,14 +173,22 @@ export default class Tree {
   isBalanced(node = this.root) {
     if (node === null) return -1;
 
+    // If left side is unbalanced return
     const leftHeight = this.isBalanced(node.left);
-    const rightHeight = this.isBalanced(node.right);
-    if (leftHeight === false || rightHeight === false) return false;
+    if (leftHeight === false) return false;
 
+    // If left side is unbalanced return
+    const rightHeight = this.isBalanced(node.right);
+    if (rightHeight === false) return false;
+
+    // If descendant nodes balanced, check current node
     const difference = leftHeight - rightHeight;
     if (difference <= -2 || difference > 1) return false;
 
+    // If we make it back to the root node and tree is balanced
     if (node === this.root) return `Tree is balanced`;
+
+    // Return height between nodes
     return Math.max(leftHeight, rightHeight) + 1;
   }
 
