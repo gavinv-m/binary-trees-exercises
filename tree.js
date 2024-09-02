@@ -79,6 +79,42 @@ export default class Tree {
     if (value > node.data) return this.findValue(value, node.right);
   }
 
+  levelOrderIteration(callback) {
+    if (typeof callback !== 'function') {
+      throw new Error('Callback function is required');
+    }
+
+    const queue = [this.root];
+    while (queue.length >= 1) {
+      if (queue[0].left !== null) queue.push(queue[0].left);
+      if (queue[0].right !== null) queue.push(queue[0].right);
+
+      callback(queue[0]);
+      queue.shift();
+    }
+
+    process.stdout.write('null\n');
+  }
+
+  levelOrderRecursion(callback, queue = [this.root]) {
+    if (typeof callback !== 'function') {
+      throw new Error('Callback function is required');
+    }
+
+    if (queue.length === 0) {
+      process.stdout.write('null\n');
+      return;
+    }
+
+    if (queue[0].left !== null) queue.push(queue[0].left);
+    if (queue[0].right !== null) queue.push(queue[0].right);
+
+    callback(queue[0]);
+    queue.shift();
+    this.levelOrderRecursion(callback, queue);
+    return;
+  }
+
   prettyPrint(node, prefix = '', isLeft = true) {
     if (node === null) {
       return;
