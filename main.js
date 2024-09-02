@@ -16,3 +16,5 @@ tree.prettyPrint(tree.root);
 // tree.postOrderTraversal(print);
 // console.log(tree.height(6345));
 // console.log(tree.depth(6345));
+// tree.insert(2);
+console.log(tree.isBalanced());

@@ -170,6 +170,20 @@ export default class Tree {
     return `Depth: ${level}`;
   }
 
+  isBalanced(node = this.root) {
+    if (node === null) return -1;
+
+    const leftHeight = this.isBalanced(node.left);
+    const rightHeight = this.isBalanced(node.right);
+    if (leftHeight === false || rightHeight === false) return false;
+
+    const difference = leftHeight - rightHeight;
+    if (difference <= -2 || difference > 1) return false;
+
+    if (node === this.root) return `Tree is balanced`;
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
   prettyPrint(node, prefix = '', isLeft = true) {
     if (node === null) {
       return;
