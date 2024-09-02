@@ -13,4 +13,5 @@ tree.prettyPrint(tree.root);
 // tree.levelOrderRecursion(print);
 // tree.inOrderTraversal(print);
 // tree.preOrderTraversal(print);
-tree.postOrderTraversal(print);
+// tree.postOrderTraversal(print);
+console.log(tree.height(9));

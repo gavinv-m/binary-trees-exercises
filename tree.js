@@ -1,5 +1,6 @@
 import Node from './node.js';
 import deleteNode from './delete.js';
+import calculateHeight from './calculate-height.js';
 
 export default class Tree {
   constructor(array) {
@@ -146,6 +147,18 @@ export default class Tree {
 
     if (node === this.root) process.stdout.write('null\n');
     return;
+  }
+
+  height(nodeValue, node = this.root) {
+    if (node === null) return 'Node not found';
+
+    if (nodeValue < node.data) {
+      return this.height(nodeValue, node.left);
+    } else if (nodeValue > node.data) {
+      return this.height(nodeValue, node.right);
+    } else {
+      return `Height: ${calculateHeight(node, nodeValue)}`;
+    }
   }
 
   prettyPrint(node, prefix = '', isLeft = true) {
