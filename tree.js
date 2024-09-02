@@ -69,6 +69,16 @@ export default class Tree {
     return node;
   }
 
+  findValue(value, node = this.root) {
+    if (node === null) return null;
+
+    if (node.data === value) return node;
+
+    if (value < node.data) return this.findValue(value, node.left);
+
+    if (value > node.data) return this.findValue(value, node.right);
+  }
+
   prettyPrint(node, prefix = '', isLeft = true) {
     if (node === null) {
       return;
