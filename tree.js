@@ -152,13 +152,22 @@ export default class Tree {
   height(nodeValue, node = this.root) {
     if (node === null) return 'Node not found';
 
-    if (nodeValue < node.data) {
-      return this.height(nodeValue, node.left);
-    } else if (nodeValue > node.data) {
-      return this.height(nodeValue, node.right);
-    } else {
-      return `Height: ${calculateHeight(node, nodeValue)}`;
-    }
+    if (nodeValue < node.data) return this.height(nodeValue, node.left);
+    if (nodeValue > node.data) return this.height(nodeValue, node.right);
+
+    return `Height: ${calculateHeight(node, nodeValue)}`;
+  }
+
+  depth(nodeValue, node = this.root, level = 0) {
+    if (node === null) return 'Node not found';
+
+    if (nodeValue < node.data)
+      return this.depth(nodeValue, node.left, (level += 1));
+
+    if (nodeValue > node.data)
+      return this.depth(nodeValue, node.right, (level += 1));
+
+    return `Depth: ${level}`;
   }
 
   prettyPrint(node, prefix = '', isLeft = true) {

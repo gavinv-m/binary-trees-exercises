@@ -14,4 +14,5 @@ tree.prettyPrint(tree.root);
 // tree.inOrderTraversal(print);
 // tree.preOrderTraversal(print);
 // tree.postOrderTraversal(print);
-console.log(tree.height(9));
+// console.log(tree.height(6345));
+// console.log(tree.depth(6345));
