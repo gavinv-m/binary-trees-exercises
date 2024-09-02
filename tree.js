@@ -186,10 +186,28 @@ export default class Tree {
     if (difference <= -2 || difference > 1) return false;
 
     // If we make it back to the root node and tree is balanced
-    if (node === this.root) return `Tree is balanced`;
+    if (node === this.root) return true;
 
     // Return height between nodes
     return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  fetchValuesInOrder(node = this.root, values = []) {
+    if (node === null) return;
+
+    this.fetchValuesInOrder(node.left, values);
+    values.push(node.data);
+    this.fetchValuesInOrder(node.right, values);
+
+    return values;
+  }
+
+  rebalance() {
+    const isBalanced = this.isBalanced();
+    if (isBalanced === true) return 'Tree is balanced';
+
+    const treeValues = this.fetchValuesInOrder();
+    this.buildTree(treeValues);
   }
 
   prettyPrint(node, prefix = '', isLeft = true) {
