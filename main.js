@@ -11,3 +11,6 @@ tree.prettyPrint(tree.root);
 // console.log(tree.findValue(67));
 // tree.levelOrderIteration(print);
 // tree.levelOrderRecursion(print);
+// tree.inOrderTraversal(print);
+// tree.preOrderTraversal(print);
+tree.postOrderTraversal(print);

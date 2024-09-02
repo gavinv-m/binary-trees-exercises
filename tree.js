@@ -115,6 +115,39 @@ export default class Tree {
     return;
   }
 
+  inOrderTraversal(callback, node = this.root) {
+    if (node === null) return;
+
+    this.inOrderTraversal(callback, node.left);
+    callback(node);
+    this.inOrderTraversal(callback, node.right);
+
+    if (node === this.root) process.stdout.write('null\n');
+    return;
+  }
+
+  preOrderTraversal(callback, node = this.root) {
+    if (node === null) return;
+
+    callback(node);
+    this.preOrderTraversal(callback, node.left);
+    this.preOrderTraversal(callback, node.right);
+
+    if (node === this.root) process.stdout.write('null\n');
+    return;
+  }
+
+  postOrderTraversal(callback, node = this.root) {
+    if (node === null) return;
+
+    this.postOrderTraversal(callback, node.left);
+    this.postOrderTraversal(callback, node.right);
+    callback(node);
+
+    if (node === this.root) process.stdout.write('null\n');
+    return;
+  }
+
   prettyPrint(node, prefix = '', isLeft = true) {
     if (node === null) {
       return;
